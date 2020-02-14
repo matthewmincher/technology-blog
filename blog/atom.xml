@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://SykesCottages.github.io/technology-blog/blog</id>
+    <id>https://sykescottages.github.io/technology-blog/blog</id>
     <title>Sykes Holiday Cottages Blog</title>
     <updated>2020-01-31T06:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://SykesCottages.github.io/technology-blog/blog"/>
+    <link rel="alternate" href="https://sykescottages.github.io/technology-blog/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Sykes Holiday Cottages news and events.</subtitle>
-    <logo>https://SykesCottages.github.io/technology-blog/img/sykes-primary-logo-white.svg</logo>
+    <logo>https://sykescottages.github.io/technology-blog/img/sykes-primary-logo-white.svg</logo>
     <rights>Copyright © 2020 Sykes Holiday Cottages</rights>
     <entry>
         <title type="html"><![CDATA[Elliot Test]]></title>
-        <id>https://SykesCottages.github.io/technology-blog/blog/2020/01/31/elliot-test.html</id>
-        <link href="https://SykesCottages.github.io/technology-blog/blog/2020/01/31/elliot-test.html"/>
+        <id>https://sykescottages.github.io/technology-blog/blog/2020/01/31/elliot-test.html</id>
+        <link href="https://sykescottages.github.io/technology-blog/blog/2020/01/31/elliot-test.html"/>
         <updated>2020-01-31T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>This blog post is a test for elliot rodgers.</p> ]]></summary>
         <author>
