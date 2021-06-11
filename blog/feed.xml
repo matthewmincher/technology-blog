@@ -2,29 +2,29 @@
 <rss version="2.0">
     <channel>
         <title>Sykes Holiday Cottages Blog</title>
-        <link>https://sykes.dev/technology-blog/blog</link>
+        <link>https://sykes.dev/blog</link>
         <description>The best place to stay up-to-date with the latest Sykes Holiday Cottages news and events.</description>
         <lastBuildDate>Thu, 10 Jun 2021 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
             <title>Sykes Holiday Cottages Blog</title>
-            <url>https://sykes.dev/technology-blog/img/sykes-primary-logo-white.svg</url>
-            <link>https://sykes.dev/technology-blog/blog</link>
+            <url>https://sykes.dev/img/sykes-primary-logo-white.svg</url>
+            <link>https://sykes.dev/blog</link>
         </image>
         <copyright>Copyright © 2021 Sykes Holiday Cottages</copyright>
         <item>
             <title><![CDATA[Setting up Poly X30]]></title>
-            <link>https://sykes.dev/technology-blog/blog/2021/06/10/Polyx30.html</link>
-            <guid>https://sykes.dev/technology-blog/blog/2021/06/10/Polyx30.html</guid>
+            <link>https://sykes.dev/blog/2021/06/10/Polyx30.html</link>
+            <guid>https://sykes.dev/blog/2021/06/10/Polyx30.html</guid>
             <pubDate>Thu, 10 Jun 2021 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Like most businesses we have been faced with getting more people to use teams to meetings. As a result we have started to look at setting up Poly x30 devices in meeting rooms.</p>
 ]]></description>
         </item>
         <item>
             <title><![CDATA[Elliot Test]]></title>
-            <link>https://sykes.dev/technology-blog/blog/2020/01/31/elliot-test.html</link>
-            <guid>https://sykes.dev/technology-blog/blog/2020/01/31/elliot-test.html</guid>
+            <link>https://sykes.dev/blog/2020/01/31/elliot-test.html</link>
+            <guid>https://sykes.dev/blog/2020/01/31/elliot-test.html</guid>
             <pubDate>Fri, 31 Jan 2020 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>This blog post is a test for elliot rodgers.</p>
 <p>No circle ci tests 3</p>
