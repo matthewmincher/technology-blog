@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://sykes.dev/blogblog</id>
+    <id>https://sykes.dev/technology-blog/blog</id>
     <title>Sykes Holiday Cottages Blog</title>
     <updated>2021-06-10T06:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://sykes.dev/blogblog"/>
+    <link rel="alternate" href="https://sykes.dev/technology-blog/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Sykes Holiday Cottages news and events.</subtitle>
-    <logo>https://sykes.dev/blogimg/sykes-primary-logo-white.svg</logo>
+    <logo>https://sykes.dev/technology-blog/img/sykes-primary-logo-white.svg</logo>
     <rights>Copyright © 2021 Sykes Holiday Cottages</rights>
     <entry>
         <title type="html"><![CDATA[Setting up Poly X30]]></title>
-        <id>https://sykes.dev/blogblog/2021/06/10/Polyx30.html</id>
-        <link href="https://sykes.dev/blogblog/2021/06/10/Polyx30.html"/>
+        <id>https://sykes.dev/technology-blog/blog/2021/06/10/Polyx30.html</id>
+        <link href="https://sykes.dev/technology-blog/blog/2021/06/10/Polyx30.html"/>
         <updated>2021-06-10T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Like most businesses we have been faced with getting more people to use teams to meetings. As a result we have started to look at setting up Poly x30 devices in meeting rooms.</p>
 ]]></summary>
@@ -21,8 +21,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Elliot Test]]></title>
-        <id>https://sykes.dev/blogblog/2020/01/31/elliot-test.html</id>
-        <link href="https://sykes.dev/blogblog/2020/01/31/elliot-test.html"/>
+        <id>https://sykes.dev/technology-blog/blog/2020/01/31/elliot-test.html</id>
+        <link href="https://sykes.dev/technology-blog/blog/2020/01/31/elliot-test.html"/>
         <updated>2020-01-31T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>This blog post is a test for elliot rodgers.</p>
 <p>No circle ci tests 3</p>
