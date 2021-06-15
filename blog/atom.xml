@@ -2,12 +2,26 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sykes.dev/blog</id>
     <title>Sykes Holiday Cottages Blog</title>
-    <updated>2021-06-10T06:00:00.000Z</updated>
+    <updated>2021-06-14T06:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sykes.dev/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Sykes Holiday Cottages news and events.</subtitle>
     <logo>https://sykes.dev/img/sykes-primary-logo-white.svg</logo>
     <rights>Copyright © 2021 Sykes Holiday Cottages</rights>
+    <entry>
+        <title type="html"><![CDATA[Behind #FridayData 2021-06-11]]></title>
+        <id>https://sykes.dev/blog/2021/06/14/Behind-Friday-Data-2021-06-11.html</id>
+        <link href="https://sykes.dev/blog/2021/06/14/Behind-Friday-Data-2021-06-11.html"/>
+        <updated>2021-06-14T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>This article is potentially useful for you if you would like to know more about the latest <a href="https://www.linkedin.com/posts/activity-6809027163401019392-U1WT">#FridayData post</a> from <a href="https://uk.linkedin.com/in/grahamdonoghue">Sykes Cottages' CEO Graham Donaghue</a>. There is something for you here if you're a manager wanting to know a bit more detail or potentially a bit more technical or a data worker who is interested in the techniques we used to create the viz and mine the data behind it.</p>
+<h2><a class="anchor" aria-hidden="true" id="about-data-and-analytics-at-sykes"></a><a href="#about-data-and-analytics-at-sykes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>About Data and Analytics at Sykes</h2>
+<p>The data and techniques shared in this article were produced by the Data and Analytics team at Sykes. We have used a combination of various technology including Tableau, Python (NLP) and SQL. If you are a talented Data Scientist, Analyst or Developer please check out our <a href="https://www.sykescottages.co.uk/careers/">current vacancies</a>.</p>
+]]></summary>
+        <author>
+            <name>Bob Pearman</name>
+            <uri>https://www.linkedin.com/in/bob-pearman-32696562/</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Setting up Poly X30]]></title>
         <id>https://sykes.dev/blog/2021/06/10/Polyx30.html</id>
