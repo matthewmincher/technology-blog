@@ -96,5 +96,87 @@ The info graphic along the top is doing the job of breaking down that average to
 <p><img src="/img/postimages/behind-friday-data/2021-06-11/1623420534414.png" alt="Suggestions Image"></p>
 <p>In the last slide of the presentation that I am sharing in this article we are focusing on general suggestions. This slide is based solely on unstructured text data and is quite an open ended question. Therefore to aggregate this we use NLP again but this time allow it to automatically find patterns of words that commonly appear together in sentences and group them into topics, this allows us to identify common themes in the data. The three things speak for themselves.</p>
 <p>Worth noting though that the aim of this analysis is not to surface every topic and suggestion but to give an overview of the high level themes and the largest topics mentioned.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-for-the-techies"></a><a href="#how-for-the-techies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How (for the techies)</h2>
+<p>Once we had the data from the survey, which is a combination of structured (scores) and unstructured text (comments) we ingest the data into Python and used the following libraries:</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+<span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> nltk
+
+from sklearn.decomposition <span class="hljs-keyword">import</span> TruncatedSVD
+from sklearn.decomposition <span class="hljs-keyword">import</span> LatentDirichletAllocation
+from collections <span class="hljs-keyword">import</span> Counter
+
+from sklearn.feature_extraction.<span class="hljs-keyword">text</span> <span class="hljs-keyword">import</span> CountVectorizer
+
+from sklearn.decomposition <span class="hljs-keyword">import</span> LatentDirichletAllocation
+</code></pre>
+<p>We then go through the following steps:</p>
+<p>Data Prep</p>
+<p>The goal of the data prep step is to clean it to:</p>
+<ul>
+<li>Remove &quot;stop words&quot; i.e. &quot;to&quot;, &quot;is&quot;, &quot;was&quot; etc.</li>
+<li>Remove unwanted characters, i.e. punctuation, slashes any special characters etc.</li>
+<li>Lower casing</li>
+</ul>
+<pre><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">clean_text</span><span class="hljs-params">(text)</span>:</span>
+<span class="hljs-string">'''Make text lowercase, remove text in square brackets, remove punctuation and remove words containing numbers.'''</span>
+text = text.lower()
+text = re.sub(<span class="hljs-string">r'\[.*?\]'</span>, <span class="hljs-string">''</span>, text)
+text = re.sub(<span class="hljs-string">r'[%s]'</span> % re.escape(string.punctuation), <span class="hljs-string">''</span>, text)
+text = re.sub(<span class="hljs-string">r'\w*\d\w*'</span>, <span class="hljs-string">''</span>, text)
+
+<span class="hljs-keyword">return</span> text
+</code></pre>
+<p>Extracting one-grams, bi-grams and tri-grams</p>
+<p>This is how we begin to understand common words, pairs and triplets of words. We can associate these back to the score given by the respondent.</p>
+<pre><code class="hljs">def get_top_n_bigram(corpus, <span class="hljs-attr">n=None):</span>
+
+  <span class="hljs-attr">vec</span> = CountVectorizer(<span class="hljs-attr">ngram_range=(3,</span> <span class="hljs-number">3</span>), <span class="hljs-attr">stop_words=</span> 'english').fit(corpus)
+  <span class="hljs-attr">bag_of_words</span> = vec.transform(corpus)
+  <span class="hljs-attr">sum_words</span> = bag_of_words.sum(<span class="hljs-attr">axis=0)</span>
+  <span class="hljs-attr">words_freq</span> = [(word, sum_words[<span class="hljs-number">0</span>, idx]) for word, idx <span class="hljs-keyword">in</span>
+    vec.vocabulary_.items()]
+
+  <span class="hljs-attr">words_freq</span> =sorted(words_freq, <span class="hljs-attr">key</span> = lambda x: x[<span class="hljs-number">1</span>], <span class="hljs-attr">reverse=True)</span>
+  return words_freq[:n]
+
+</code></pre>
+<p>Topic modelling</p>
+<p>We use topic modelling to automatically identify topics contained within the unstructured text.</p>
+<pre><code class="hljs">vectorizer = CountVectorizer(<span class="hljs-attribute">analyzer</span>=<span class="hljs-string">'word'</span>,
+<span class="hljs-attribute">min_df</span>=3, # minimum required occurences of a word
+<span class="hljs-attribute">stop_words</span>=<span class="hljs-string">'english'</span>, # <span class="hljs-builtin-name">remove</span> stop words
+<span class="hljs-attribute">lowercase</span>=<span class="hljs-literal">True</span>, # convert all words <span class="hljs-keyword">to</span> lowercase
+<span class="hljs-attribute">token_pattern</span>=<span class="hljs-string">'[a-zA-Z0-9]{3,}'</span>, # num chars &gt; 3
+<span class="hljs-attribute">max_features</span>=1000, # max number of unique words. Build a vocabulary that only consider the top max_features ordered by term frequency across the corpus
+)
+
+data_vectorized = vectorizer.fit_transform(df[<span class="hljs-string">'clean_text'</span>])
+
+lda_model = LatentDirichletAllocation(<span class="hljs-attribute">n_components</span>=10, # Number of topics <span class="hljs-attribute">learning_method</span>=<span class="hljs-string">'online'</span>, <span class="hljs-attribute">random_state</span>=0, n_jobs = -1 # Use all available CPUs
+                                     )
+
+lda_output = lda_model.fit_transform(data_vectorized)
+
+pyLDAvis.enable_notebook()
+pyLDAvis.sklearn.prepare(lda_model, data_vectorized, vectorizer, <span class="hljs-attribute">mds</span>=<span class="hljs-string">'tsne'</span>pyLDAvis.enable_notebook()
+</code></pre>
+<p>Tableau</p>
+<p>Once we have our data we load it into Tableau to create the various visualizations.</p>
+<p>Most of these visualizations are standard so I won't go through the steps for those. However we were keen when we were breaking down the averages to use an info gram that represented respondents and the distribution of them in a none technical way as 90% of people receiving this presentation are none technical, this is why we chose people icons, coloured to represent the responses, e.g.
+No alt text provided for this image</p>
+<p>This is very easy to do in Tableau,</p>
+<p>Step 1 - prep your data.
+No alt text provided for this image</p>
+<p>With exactly 100 rows, in the result column are then Good, Same or Bad (the exact words you use is unimportant).</p>
+<p>Step 2 - Pull into Tableau and create the first part of the sheet</p>
+<p>Drag row number to Detail, change the Marks to Shape, click Shape then More shapes... and find the gender neutral icon.
+No alt text provided for this image</p>
+<p>Step 3 - Colour the icons</p>
+<p>Drag result to Colour (adjust the colours if required) and resize the icons.
+No alt text provided for this image</p>
+<p>Our final steps in this project were just to pull all of the visualizations together into a presentation and add commentary.</p>
 </span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Behind #FridayData 2021-06-11" data-url="https://sykes.dev/blog/2021/06/14/Behind-Friday-Data-2021-06-11" data-related="true" data-show-count="false">Tweet</a></div><div class="blogSocialSectionItem"><div class="fb-like" data-href="https://sykes.dev/blog/2021/06/14/Behind-Friday-Data-2021-06-11" data-layout="standard" data-share="true" data-width="225" data-show-faces="false"></div></div><div class="blogSocialSectionItem"><div class="fb-comments" data-href="https://sykes.dev/blog/2021/06/14/Behind-Friday-Data-2021-06-11" data-width="100%" data-numposts="5" data-order-by="time"></div></div></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/sykes-primary-logo-white-small.svg" alt="Sykes Holiday Cottages"/></a><div><h5>Community</h5><a href="https://facebook.com/sykescottages.co.uk" target="_blank">Facebook</a><a href="https://twitter.com/sykescottages" target="_blank">Twitter</a><a href="https://github.com/SykesCottages" target="_blank">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><div class="social"><a href="https://twitter.com/sykescottages" class="twitter-follow-button">Follow @sykescottages</a></div><div class="social"><div class="fb-like" data-href="https://sykes.dev" data-colorscheme="dark" data-layout="standard" data-share="true" data-width="225" data-show-faces="false"></div></div></div></section><section class="copyright">Copyright © 2021 Sykes Holiday Cottages</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'236941918291',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
                 </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
