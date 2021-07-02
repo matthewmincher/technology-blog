@@ -2,12 +2,28 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sykes.dev/blog</id>
     <title>Sykes Holiday Cottages Blog</title>
-    <updated>2021-06-14T06:00:00.000Z</updated>
+    <updated>2021-07-02T06:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sykes.dev/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Sykes Holiday Cottages news and events.</subtitle>
     <logo>https://sykes.dev/img/sykes-primary-logo-white.svg</logo>
     <rights>Copyright © 2021 Sykes Holiday Cottages</rights>
+    <entry>
+        <title type="html"><![CDATA[Why Sykes Cottages partnered with Snowflake and Confluent to drive enhanced customer experience.]]></title>
+        <id>https://sykes.dev/blog/2021/07/02/Snowflake.html</id>
+        <link href="https://sykes.dev/blog/2021/07/02/Snowflake.html"/>
+        <updated>2021-07-02T06:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>The experience of our customers on the web is a top priority for us and is one
+of the ways we stay competitive. Our goal is to match customers to their
+perfect holiday cottage experience and delight at each stage along the way.
+Getting the data pipeline to fuel this innovation is key and, in this post, we
+explain more about why and how.</p>
+]]></summary>
+        <author>
+            <name>Bob Pearman</name>
+            <uri>https://www.linkedin.com/in/bob-pearman-32696562/</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Behind #FridayData 2021-06-11]]></title>
         <id>https://sykes.dev/blog/2021/06/14/Behind-Friday-Data-2021-06-11.html</id>

@@ -4,7 +4,7 @@
         <title>Sykes Holiday Cottages Blog</title>
         <link>https://sykes.dev/blog</link>
         <description>The best place to stay up-to-date with the latest Sykes Holiday Cottages news and events.</description>
-        <lastBuildDate>Mon, 14 Jun 2021 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 02 Jul 2021 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,6 +13,18 @@
             <link>https://sykes.dev/blog</link>
         </image>
         <copyright>Copyright © 2021 Sykes Holiday Cottages</copyright>
+        <item>
+            <title><![CDATA[Why Sykes Cottages partnered with Snowflake and Confluent to drive enhanced customer experience.]]></title>
+            <link>https://sykes.dev/blog/2021/07/02/Snowflake.html</link>
+            <guid>https://sykes.dev/blog/2021/07/02/Snowflake.html</guid>
+            <pubDate>Fri, 02 Jul 2021 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>The experience of our customers on the web is a top priority for us and is one
+of the ways we stay competitive. Our goal is to match customers to their
+perfect holiday cottage experience and delight at each stage along the way.
+Getting the data pipeline to fuel this innovation is key and, in this post, we
+explain more about why and how.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Behind #FridayData 2021-06-11]]></title>
             <link>https://sykes.dev/blog/2021/06/14/Behind-Friday-Data-2021-06-11.html</link>
