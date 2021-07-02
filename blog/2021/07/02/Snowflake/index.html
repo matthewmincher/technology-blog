@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Why Sykes Cottages partnered with Snowflake and Confluent to drive enhanced customer experience. · Sykes Holiday Cottages</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="The experience of our customers on the web is a top priority for us and is one"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Why Sykes Cottages partnered with Snowflake and Confluent to drive enhanced customer experience. · Sykes Holiday Cottages"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sykes.dev/blog/2021/07/02/Snowflake"/><meta property="og:description" content="The experience of our customers on the web is a top priority for us and is one"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sykes.dev/img/sykes-twitter-logo.jpg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://sykes.dev/blog/atom.xml" title="Sykes Holiday Cottages Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://sykes.dev/blog/feed.xml" title="Sykes Holiday Cottages Blog RSS Feed"/><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/sykes-primary-logo-white.svg" alt="Sykes Holiday Cottages"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/blog/" target="_self">Technology Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/06/14/Behind-Friday-Data-2021-06-11">Behind #FridayData 2021-06-11</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2021/07/02/Snowflake">Why Sykes Cottages partnered with Snowflake and Confluent to drive enhanced customer experience.</a></h1><p class="post-meta">July 2, 2021</p><div class="authorBlock"><p class="post-authorName"><a href="https://www.linkedin.com/in/bob-pearman-32696562/" target="_blank" rel="noreferrer noopener">Bob Pearman</a></p></div></header><div><span><p>The experience of our customers on the web is a top priority for us and is one
+of the ways we stay competitive. Our goal is to match customers to their
+perfect holiday cottage experience and delight at each stage along the way.
+Getting the data pipeline to fuel this innovation is key and, in this post, we
+explain more about why and how.</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="about-data-and-analytics-at-sykes"></a><a href="#about-data-and-analytics-at-sykes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>About Data and Analytics at Sykes</h2>
+<p>The data and techniques shared in this article were produced by the Data and Analytics team at Sykes. If you are a talented Data Scientist, Analyst or Developer please check out our <a href="https://www.sykescottages.co.uk/careers/">current vacancies</a>.</p>
+<p><img src="/img/postimages/snowflake/Property.png" alt="Property"></p>
+<p>For several years now Sykes have been
+innovating and iteratively improving website
+features through testing, steadily improving our
+customer satisfaction rates and conversion year
+on year.
+As we grow as a business, we are looking for new
+ways to further innovate our web experience
+through data.</p>
+<p><img src="/img/postimages/snowflake/cycle.jpg" alt="Cycle"></p>
+<p>To fuel the next phase of innovation we began by looking at our current data pipeline.</p>
+<p><img src="/img/postimages/snowflake/current.png" alt="Current Pipeline"></p>
+<p>The existing pipeline, whilst serving its
+purpose for several years, does have
+problems that impair this cycle.</p>
+<p>Very early in this pipeline the data is
+turned into rows and columns
+(structured data).</p>
+<p>Various copies are made, and the
+results are presented via a static report.
+Data engineers are needed for any
+changes, such as new events or
+contextual information.
+Scale is also challenging as this has to
+be done manually in the main.</p>
+<p>Our objective is to simplify this pipeline, make it scalable and self-service.</p>
+<p>Conceptually
+we looked to move to something more like this.</p>
+<p><img src="/img/postimages/snowflake/newpipeline.png" alt="New Pipeline"></p>
+<p>Critically keeping the data in a semi-structured format until it is ingested into the
+warehouse then using ELT to do a single transformation of the data, we can simplify the
+pipeline and make it much more agile.</p>
+<p>New web events (and any context that goes with it) can we wrapped up within a message
+and can flow all the way to the warehouse without a single code change. The new events
+are then available to the web teams either though a query or the viz tool.</p>
+<p>Our current throughput is around 50k (peaking at over 300k) messages per minute. As
+new events are captured this will grow considerably, each of the above components must
+scale accordingly.</p>
+<p>This means the web teams can capture new events, analyse the data using self-service
+tools with no dependency on Data Engineering.</p>
+<p>The business case for doing this is compelling. Based on our testing and projections, we
+expect at least 10x ROI over 3 years for this investment.</p>
+<h2><a class="anchor" aria-hidden="true" id="how-for-the-techies"></a><a href="#how-for-the-techies" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>How (for the techies)</h2>
+<p>After a not simple selection process, involving paper-based evaluations, a scoring stage
+and a hands-on POC or trial usage stage, we decided that our new data pipeline will use
+Confluent Kafka for data streaming and change data capture and Snowflake Cloud for
+Data Warehouse Compute and Storage. Those technologies allow us to meet our main
+requirements that were established at the beginning of this project, around near real
+time reporting and the flexibility of creating new web events.</p>
+<h2><a class="anchor" aria-hidden="true" id="streaming-platform"></a><a href="#streaming-platform" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Streaming Platform</h2>
+<p>Using Confluent Cloud for our Kafka needs has allowed us to offload the responsibility of
+running Kafka, whilst giving us access to a wide range of available ready-
+made connectors for integrations.</p>
+<p><img src="/img/postimages/snowflake/streaming.png" alt="Streaming"></p>
+<p>Our setup comprises of a Kafka cluster, two self-managed connectors
+to import data and one managed connector to export data.</p>
+<p>For the self-managed connectors, we extend the Confluent connect base image by
+installing the required connector files, which are available on the Confluent Hub.</p>
+<pre><code class="hljs"><span class="hljs-keyword">FROM</span> confluentinc/cp-kafka-connect-base:<span class="hljs-number">6.0</span>.<span class="hljs-number">2</span>
+<span class="hljs-comment"># install the required connector jar file</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> confluent-hub install --no-prompt debezium/debezium-connector-mysql:1.4.0</span>
+<span class="hljs-keyword">RUN</span><span class="bash"> confluent-hub install --no-prompt confluentinc/kafka-connect-sqs:1.1.1</span>
+</code></pre>
+<p>Once the connect worker is running, the connector configuration can be loaded into
+Kafka Connect via the REST API.</p>
+<pre><code class="hljs">PUT /connectors/mysql-source<span class="hljs-built_in">/config </span>HTTP/1.1
+Host: connect.example.com
+Accept: application/json
+{
+<span class="hljs-string">"connector.class"</span>: <span class="hljs-string">"io.debezium.connector.mysql.MySqlConnector"</span>,
+<span class="hljs-string">"kafka.api.key"</span>: <span class="hljs-string">"api_key"</span>,
+<span class="hljs-string">"kafka.api.secret"</span>: <span class="hljs-string">"api_secret"</span>,
+<span class="hljs-string">"database.hostname"</span>: <span class="hljs-string">"server_name"</span>,
+<span class="hljs-string">"database.port"</span>: <span class="hljs-string">"server_port"</span>,
+<span class="hljs-string">"database.user"</span>: <span class="hljs-string">"db_user"</span>,
+<span class="hljs-string">"database.password"</span>: <span class="hljs-string">"db_password"</span>,
+<span class="hljs-string">"database.server.name"</span>: <span class="hljs-string">"server_name"</span>,
+<span class="hljs-string">"tasks.max"</span>: <span class="hljs-string">"1"</span>
+}
+</code></pre>
+<p>Once the connector is configured, we can see in the connect worker logs as follows, which
+indicates the successful ingestion of data from MySQL to Kafka.</p>
+<pre><code class="hljs">[<span class="hljs-number">2021</span><span class="hljs-number">-04</span><span class="hljs-number">-21</span> <span class="hljs-number">11</span>:<span class="hljs-number">07</span>:<span class="hljs-number">42</span>,<span class="hljs-number">774</span>] INFO start transaction with consistent snapshot
+[<span class="hljs-number">2021</span><span class="hljs-number">-04</span><span class="hljs-number">-21</span> <span class="hljs-number">11</span>:<span class="hljs-number">07</span>:<span class="hljs-number">42</span>,<span class="hljs-number">833</span>] INFO read list of available tables <span class="hljs-keyword">in</span> each database
+[<span class="hljs-number">2021</span><span class="hljs-number">-04</span><span class="hljs-number">-21</span> <span class="hljs-number">11</span>:<span class="hljs-number">08</span>:<span class="hljs-number">01</span>,<span class="hljs-number">564</span>] INFO scanned <span class="hljs-number">48169</span> rows <span class="hljs-keyword">in</span> <span class="hljs-number">23</span> tables <span class="hljs-keyword">in</span> <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">08.451</span>
+</code></pre>
+<p>We use a managed Snowflake connector to move the data out of Kafka into
+Snowflake, which can be setup in the Confluent cloud web UI or the command
+line interface.</p>
+<pre><code class="hljs">cat &gt; snowflake.json
+{
+"connector.class": "SnowflakeSink",
+"topics": "web.events",
+"input.data.format": "JSON",
+"kafka.api.key": “api_key ",
+"kafka.api.secret": "api_secret”,
+"snowflake.url.name": "https://xxxxxxx.eu-west-1.snowflakecomputing.com",
+"snowflake.user.name": "kafka_connector_user",
+"snowflake.private.key": "private_key
+"snowflake.<span class="hljs-keyword">database</span>.name": "kafka_db",
+"snowflake.<span class="hljs-keyword">schema</span>.name": "kafka_schema",
+"<span class="hljs-type">name</span>": "snowflake_sink",
+"tasks.max": "<span class="hljs-number">1</span>"
+}
+ctrl + d
+ccloud connector create --config snowflake.json
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="data-warehouse"></a><a href="#data-warehouse" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Data Warehouse</h2>
+<p>Using Snowflake for our data warehouse needs has allowed us to scale compute and
+storage independently, whilst providing native support for semi-structured data.Every Snowflake table loaded by Kafka connector consists of two variant columns,
+a metadata and content column, which can be queried using SQL select statements and
+JSON dot notation.</p>
+<p><img src="/img/postimages/snowflake/query.png" alt="Query"></p>
+<p>We utilise Snowflake tasks and streams on the table created by the connector to process
+newly inserted rows and flatten the message within the content column into a reporting
+table.</p>
+<pre><code class="hljs"><span class="hljs-keyword">CREATE</span> STREAM kafka_topic_stream <span class="hljs-keyword">ON</span> <span class="hljs-keyword">TABLE</span> “kafka_db”.”kafka_schema”.”kafka_topic”;
+<span class="hljs-keyword">CREATE</span> TASK flatten_kafka_topic
+WAREHOUSE = xs_warehouse
+SCHEDULE = <span class="hljs-string">'1 minute'</span>
+<span class="hljs-keyword">WHEN</span>
+<span class="hljs-keyword">SYSTEM</span>$STREAM_HAS_DATA(<span class="hljs-string">'kafka_topic_stream'</span>)
+<span class="hljs-keyword">AS</span>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> fct_web_events
+<span class="hljs-keyword">SELECT</span>
+rv.RECORD_CONTENT:user_id::<span class="hljs-keyword">string</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">AS</span> user_id,
+rv.RECORD_CONTENT:event_timestamp::TIMESTAMP_TZ(<span class="hljs-number">0</span>) <span class="hljs-keyword">AS</span> event_timestamp,
+rv.RECORD_CONTENT:session_id::<span class="hljs-keyword">string</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">AS</span> session_id,
+rv.RECORD_CONTENT:event_type::<span class="hljs-keyword">string</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">AS</span> event_type,
+rv.RECORD_CONTENT:user.device_type::<span class="hljs-keyword">string</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">AS</span> device_type,
+rv.RECORD_CONTENT:user.platform::<span class="hljs-keyword">string</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">AS</span> platform,
+exp.key::<span class="hljs-keyword">string</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">AS</span> variation,
+var.value::<span class="hljs-built_in">int</span> <span class="hljs-keyword">AS</span> experiment_instance_id
+<span class="hljs-keyword">FROM</span> kafka_topic_stream <span class="hljs-keyword">AS</span> rv
+, <span class="hljs-keyword">LATERAL</span> FLATTEN( <span class="hljs-keyword">INPUT</span> =&gt; rv.RECORD_CONTENT:experiment ) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">exp</span>
+, <span class="hljs-keyword">LATERAL</span> FLATTEN( <span class="hljs-keyword">INPUT</span> =&gt; exp.value ) <span class="hljs-keyword">AS</span> <span class="hljs-keyword">var</span>
+<span class="hljs-keyword">WHERE</span> METADATA$<span class="hljs-keyword">ACTION</span> = <span class="hljs-string">'INSERT'</span>;
+</code></pre>
+<p>Now the data is available to be self-served by the web teams, in near real-time,
+using the preferred data viz tool. In our case, the experimentation dashboard has been
+created using a live Tableau connection.</p>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Why Sykes Cottages partnered with Snowflake and Confluent to drive enhanced customer experience." data-url="https://sykes.dev/blog/2021/07/02/Snowflake" data-related="true" data-show-count="false">Tweet</a></div><div class="blogSocialSectionItem"><div class="fb-like" data-href="https://sykes.dev/blog/2021/07/02/Snowflake" data-layout="standard" data-share="true" data-width="225" data-show-faces="false"></div></div><div class="blogSocialSectionItem"><div class="fb-comments" data-href="https://sykes.dev/blog/2021/07/02/Snowflake" data-width="100%" data-numposts="5" data-order-by="time"></div></div></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/sykes-primary-logo-white-small.svg" alt="Sykes Holiday Cottages"/></a><div><h5>Community</h5><a href="https://facebook.com/sykescottages.co.uk" target="_blank">Facebook</a><a href="https://twitter.com/sykescottages" target="_blank">Twitter</a><a href="https://github.com/SykesCottages" target="_blank">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><div class="social"><a href="https://twitter.com/sykescottages" class="twitter-follow-button">Follow @sykescottages</a></div><div class="social"><div class="fb-like" data-href="https://sykes.dev" data-colorscheme="dark" data-layout="standard" data-share="true" data-width="225" data-show-faces="false"></div></div></div></section><section class="copyright">Copyright © 2021 Sykes Holiday Cottages</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'236941918291',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
