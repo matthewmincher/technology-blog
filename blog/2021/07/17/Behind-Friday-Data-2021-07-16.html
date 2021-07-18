@@ -70,7 +70,7 @@ We take advantage of <a href="https://aws.amazon.com/fargate">AWS Fargate</a> to
 I confirmed this with a script to curl all hosts and check the times logged were the same at various times throughout the minute.</p>
 <pre><code class="hljs">curl --connect-to www.sykescottages.co.uk:<span class="hljs-number">443</span>:<span class="hljs-built_in">int</span>ernal-ip-here:<span class="hljs-number">443</span> https:<span class="hljs-comment">//www.sykescottages.co.uk &amp;</span>
 </code></pre>
-<p>The command above command will connect to internal-ip-here:443 instead of the normal DNS lookup for sykescottages.co.uk, as we have multiple servers, the ampersand at the end runs all curl commands concurrently to test the time is the same.</p>
+<p>The command above will connect to internal-ip-here:443 instead of the normal DNS lookup for sykescottages.co.uk, as we have multiple servers, the ampersand at the end runs all curl commands concurrently to test the time is the same.</p>
 <p>The results were good, so no time drift corrections needed!</p>
 <p>Secondly, I needed to clean up the data to make sure general bot traffic for example would not effect the result. I also wanted to remove effects from someone being super active on the website, so only counted each session once per minute, as this data is already processed the query looked similar to below.</p>
 <pre><code class="hljs"><span class="hljs-keyword">SELECT</span>
