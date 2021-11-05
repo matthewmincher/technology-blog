@@ -1,0 +1,135 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Deploying to AWS without Secrets · Sykes Holiday Cottages</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="This article attempts to give an insight to how we deploy code at Sykes, using Bitbucket and AWS"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Deploying to AWS without Secrets · Sykes Holiday Cottages"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sykes.dev/blog/2021/11/05/Deploying-to-AWS-without-Secrets"/><meta property="og:description" content="This article attempts to give an insight to how we deploy code at Sykes, using Bitbucket and AWS"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sykes.dev/img/sykes-twitter-logo.jpg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://sykes.dev/blog/atom.xml" title="Sykes Holiday Cottages Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://sykes.dev/blog/feed.xml" title="Sykes Holiday Cottages Blog RSS Feed"/><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/sykes-primary-logo-white.svg" alt="Sykes Holiday Cottages"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/blog/" target="_self">Technology Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem"><a class="navItem" href="/blog/2021/07/17/Behind-Friday-Data-2021-07-16">Behind #FridayData 2021-07-16</a></li><li class="navListItem"><a class="navItem" href="/blog/2021/07/02/Snowflake">Why Sykes Cottages partnered with Snowflake and Confluent to drive enhanced customer experience.</a></li><li class="navListItem"><a class="navItem" href="/blog/2021/06/14/Behind-Friday-Data-2021-06-11">Behind #FridayData 2021-06-11</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2021/11/05/Deploying-to-AWS-without-Secrets">Deploying to AWS without Secrets</a></h1><p class="post-meta">November 5, 2021</p><div class="authorBlock"><p class="post-authorName"><a href="https://www.twitter.com/exusssum" target="_blank" rel="noreferrer noopener">Scott Dutton</a></p></div></header><div><span><p>This article attempts to give an insight to how we deploy code at Sykes, using Bitbucket and AWS</p>
+<h2><a class="anchor" aria-hidden="true" id="about-sykes"></a><a href="#about-sykes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>About Sykes</h2>
+<p>The techniques shared in this article were produced by the development team at Sykes. We are always pushing for more automated and more secure builds in out CI process. If you are a talented Data Scientist, Analyst or Developer please check out our <a href="https://www.sykescottages.co.uk/careers/">current vacancies</a>.</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="context"></a><a href="#context" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Context</h2>
+<p>Storing code on Bitbucket and deploying to AWS is quite a common set up, most tutorials or resources online
+demonstrate ways to deploy using secrets in the Build, this works well, especially using
+a user which can assume other roles.</p>
+<p>Due to the variety of applications this user tends to be quite powerful, so the build process becomes an attractive target.</p>
+<p>We wanted to reduce the risk of this key leaking and if it did we need to be able to limit damage this key could cause.</p>
+<h2><a class="anchor" aria-hidden="true" id="using-openid-connect"></a><a href="#using-openid-connect" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Using OpenID connect</h2>
+<p>Ideally we do not want any secrets in the build, removing secrets simplifies lots of things as the
+requirement to rotate the credentials goes away also.</p>
+<p>We settled on a solution using OpenID Connect. To set this up go to a repo in BitBucket, Click Settings, and then Open ID connect</p>
+<p>This URL should get you there - <a href="https://bitbucket.org/workspace/codebase/admin/addon/admin/pipelines/openid-connect">https://bitbucket.org/workspace/codebase/admin/addon/admin/pipelines/openid-connect</a></p>
+<p><img src="/img/postimages/aws-without-secrets/openidconnect.png" alt="OpenId Connect Settings"></p>
+<p>Next we need to allow this as an external identity provider in AWS. Go to IAM, and then <a href="https://console.aws.amazon.com/iamv2/home?#/identity_providers">Identity Providers</a></p>
+<p>From here click add provider and then paste the values from the bitbucket page.
+<img src="/img/postimages/aws-without-secrets/identity-provider.png" alt="Identity Provider"></p>
+<p>This is now set up!</p>
+<p>Some terraform if you prefer to manage via that</p>
+<pre><code class="hljs"><span class="hljs-built_in">
+resource </span><span class="hljs-string">"aws_iam_openid_connect_provider"</span> <span class="hljs-string">"bitbucket"</span> {
+  url = <span class="hljs-string">"https://api.bitbucket.org/2.0/workspaces/workspaceURL/pipelines-config/identity/oidc"</span>
+
+  client_id_list = [
+    <span class="hljs-string">"The Audiance String from BitBucket"</span>,
+  ]
+
+  thumbprint_list = [
+    <span class="hljs-string">"a031c46782e6e6c662c2c87c76da9aa62ccabd8e"</span>
+  ]
+}
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="create-a-role"></a><a href="#create-a-role" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create a Role</h2>
+<p>In IAM a role needs to be created with the permissions of the build.</p>
+<p>When creating a role, select the web identity provider, this will give you a drop down option which will include the
+bitbucket identity provider we created above.</p>
+<p>Press next and choose permissions like a normal role. Try to keep this role to allow only the parts which are necessary for the build.</p>
+<p>Now its created we can lock it down a little more, Back on the original openid connect page in bitbucket, there is a repository id, if we use this ID in the
+policy statement we can stop one project using a role of another project.
+The role should have the minimum permissions it needs to deploy a single code base.</p>
+<h2><a class="anchor" aria-hidden="true" id="the-builds"></a><a href="#the-builds" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The Builds</h2>
+<p>Now the identity checks are set up, the builds need to be able to handle the new way of getting AWS credentials.</p>
+<p>Each step in the build which needs AWS Credentials needs <code>oidc: true</code> adding to the yaml.</p>
+<p>Example below using an atlassian image</p>
+<pre><code class="hljs">  <span class="hljs-bullet">-</span> <span class="hljs-attr">step:</span> <span class="hljs-string">&amp;production-deploy</span>
+      <span class="hljs-attr">name:</span> <span class="hljs-string">Deployment</span>
+      <span class="hljs-attr">deployment:</span> <span class="hljs-string">production</span>
+      <span class="hljs-attr">oidc:</span> <span class="hljs-literal">true</span>
+      <span class="hljs-attr">script:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">pipe:</span> <span class="hljs-string">atlassian/aws-s3-deploy:1.1.0</span>
+          <span class="hljs-attr">variables:</span>
+            <span class="hljs-attr">AWS_DEFAULT_REGION:</span> <span class="hljs-string">'eu-west-1'</span>
+            <span class="hljs-attr">AWS_OIDC_ROLE_ARN:</span> <span class="hljs-string">'arn:aws:iam::accountid:role/RoleName'</span>
+            <span class="hljs-attr">S3_BUCKET:</span> <span class="hljs-string">'api.sykes.network'</span>
+            <span class="hljs-attr">LOCAL_PATH:</span> <span class="hljs-string">'upstream/hoppscotch/dist/'</span>
+            <span class="hljs-attr">ACL:</span> <span class="hljs-string">'bucket-owner-full-control'</span>
+</code></pre>
+<p>If you are using a base image you need to set up the CLI manually as follows (again making sure that oidc: true is set)</p>
+<pre><code class="hljs"><span class="hljs-builtin-name">export</span> <span class="hljs-attribute">AWS_WEB_IDENTITY_TOKEN_FILE</span>=~/.aws/web-identity-token
+echo <span class="hljs-string">"<span class="hljs-variable">${BITBUCKET_STEP_OIDC_TOKEN}</span>"</span> &gt;&gt; <span class="hljs-variable">${AWS_WEB_IDENTITY_TOKEN_FILE}</span>
+chmod 400 <span class="hljs-variable">${AWS_WEB_IDENTITY_TOKEN_FILE}</span>
+aws configure <span class="hljs-builtin-name">set</span> web_identity_token_file <span class="hljs-variable">${AWS_WEB_IDENTITY_TOKEN_FILE}</span>
+aws configure <span class="hljs-builtin-name">set</span> role_arn <span class="hljs-variable">${AWS_ROLE_ARN}</span>
+</code></pre>
+<p>With the role coming from the deployment variables / repository variables (used for checking a pull request for example)</p>
+<h2><a class="anchor" aria-hidden="true" id="summary"></a><a href="#summary" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Summary</h2>
+<p>Using OpenID Connect simplifies deploying to AWS in a secure way, which has built in rotation and allows really find grained
+controls over the deployment.</p>
+<p>Debugging can be a little harder as its hard to know if the token has been passed correctly, using the aws cli it's easy to
+check</p>
+<pre><code class="hljs"><span class="hljs-string">aws </span><span class="hljs-string">sts </span><span class="hljs-built_in">get-caller-identity</span>
+</code></pre>
+<p>should show if the token has been picked up and in use</p>
+<p>Github also supports OpenID connect and the process is very similar there</p>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Deploying to AWS without Secrets" data-url="https://sykes.dev/blog/2021/11/05/Deploying-to-AWS-without-Secrets" data-related="true" data-show-count="false">Tweet</a></div><div class="blogSocialSectionItem"><div class="fb-like" data-href="https://sykes.dev/blog/2021/11/05/Deploying-to-AWS-without-Secrets" data-layout="standard" data-share="true" data-width="225" data-show-faces="false"></div></div><div class="blogSocialSectionItem"><div class="fb-comments" data-href="https://sykes.dev/blog/2021/11/05/Deploying-to-AWS-without-Secrets" data-width="100%" data-numposts="5" data-order-by="time"></div></div></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/sykes-primary-logo-white-small.svg" alt="Sykes Holiday Cottages"/></a><div><h5>Community</h5><a href="https://facebook.com/sykescottages.co.uk" target="_blank">Facebook</a><a href="https://twitter.com/sykescottages" target="_blank">Twitter</a><a href="https://github.com/SykesCottages" target="_blank">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><div class="social"><a href="https://twitter.com/SykesDev" class="twitter-follow-button">Follow @SykesDev</a></div><div class="social"><div class="fb-like" data-href="https://sykes.dev" data-colorscheme="dark" data-layout="standard" data-share="true" data-width="225" data-show-faces="false"></div></div></div></section><section class="copyright">Copyright © 2021 Sykes Holiday Cottages</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'236941918291',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
