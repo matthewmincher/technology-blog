@@ -2,12 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://sykes.dev/blog</id>
     <title>Sykes Holiday Cottages Blog</title>
-    <updated>2021-11-05T06:00:00.000Z</updated>
+    <updated>1970-01-01T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://sykes.dev/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Sykes Holiday Cottages news and events.</subtitle>
     <logo>https://sykes.dev/img/sykes-primary-logo-white.svg</logo>
     <rights>Copyright © 2021 Sykes Holiday Cottages</rights>
+    <entry>
+        <title type="html"><![CDATA[#FridayData 2021-12-17]]></title>
+        <id>https://sykes.dev/blog/DataFriday/2021/12/17.html</id>
+        <link href="https://sykes.dev/blog/DataFriday/2021/12/17.html"/>
+        <updated>1970-01-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><img src="/img/postimages/friday-data/20211217.png" alt="DataFriday"></p> <p>In this post we are having a look at what people are booking right now. For bookings made since the start of the month we are looking at how they break down in terms of region and season.</p> <p>In terms of season we can see most people are booking short l...</p>]]></summary>
+        <author>
+            <name>Bob Pearman</name>
+            <uri>https://www.linkedin.com/in/bob-pearman-32696562/</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Deploying to AWS without Secrets]]></title>
         <id>https://sykes.dev/blog/2021/11/05/Deploying-to-AWS-without-Secrets.html</id>

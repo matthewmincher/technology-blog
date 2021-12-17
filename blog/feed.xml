@@ -4,7 +4,7 @@
         <title>Sykes Holiday Cottages Blog</title>
         <link>https://sykes.dev/blog</link>
         <description>The best place to stay up-to-date with the latest Sykes Holiday Cottages news and events.</description>
-        <lastBuildDate>Fri, 05 Nov 2021 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 01 Jan 1970 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -13,6 +13,13 @@
             <link>https://sykes.dev/blog</link>
         </image>
         <copyright>Copyright © 2021 Sykes Holiday Cottages</copyright>
+        <item>
+            <title><![CDATA[#FridayData 2021-12-17]]></title>
+            <link>https://sykes.dev/blog/DataFriday/2021/12/17.html</link>
+            <guid>https://sykes.dev/blog/DataFriday/2021/12/17.html</guid>
+            <pubDate>Thu, 01 Jan 1970 00:00:00 GMT</pubDate>
+            <description><![CDATA[<p><img src="/img/postimages/friday-data/20211217.png" alt="DataFriday"></p> <p>In this post we are having a look at what people are booking right now. For bookings made since the start of the month we are looking at how they break down in terms of region and season.</p> <p>In terms of season we can see most people are booking short l...</p>]]></description>
+        </item>
         <item>
             <title><![CDATA[Deploying to AWS without Secrets]]></title>
             <link>https://sykes.dev/blog/2021/11/05/Deploying-to-AWS-without-Secrets.html</link>
