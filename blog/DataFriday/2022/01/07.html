@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>#FridayData 2021-01-07 · Sykes Holiday Cottages</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="# Consumers are showing different booking patterns this year versus 2019…and there is reason to be optimistic for Summer"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="#FridayData 2021-01-07 · Sykes Holiday Cottages"/><meta property="og:type" content="website"/><meta property="og:url" content="https://sykes.dev/blog/DataFriday/2022/01/07"/><meta property="og:description" content="# Consumers are showing different booking patterns this year versus 2019…and there is reason to be optimistic for Summer"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://sykes.dev/img/sykes-twitter-logo.jpg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://sykes.dev/blog/atom.xml" title="Sykes Holiday Cottages Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://sykes.dev/blog/feed.xml" title="Sykes Holiday Cottages Blog RSS Feed"/><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/sykes-primary-logo-white.svg" alt="Sykes Holiday Cottages"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/blog/" target="_self">Technology Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/DataFriday/2022/01/07">#FridayData 2021-01-07</a></li><li class="navListItem"><a class="navItem" href="/blog/DataFriday/2021/12/17">#FridayData 2021-12-17</a></li><li class="navListItem"><a class="navItem" href="/blog/2021/11/05/Deploying-to-AWS-without-Secrets">Deploying to AWS without Secrets</a></li><li class="navListItem"><a class="navItem" href="/blog/2021/07/17/Behind-Friday-Data-2021-07-16">Behind #FridayData 2021-07-16</a></li><li class="navListItem"><a class="navItem" href="/blog/2021/07/02/Snowflake">Why Sykes Cottages partnered with Snowflake and Confluent to drive enhanced customer experience.</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/DataFriday/2022/01/07">#FridayData 2021-01-07</a></h1><p class="post-meta">January 7, 2022</p><div class="authorBlock"><p class="post-authorName"><a href="https://www.linkedin.com/in/bob-pearman-32696562/" target="_blank" rel="noreferrer noopener">Bob Pearman</a></p></div></header><div><span><h1><a class="anchor" aria-hidden="true" id="consumers-are-showing-different-booking-patterns-this-year-versus-2019and-there-is-reason-to-be-optimistic-for-summer"></a><a href="#consumers-are-showing-different-booking-patterns-this-year-versus-2019and-there-is-reason-to-be-optimistic-for-summer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Consumers are showing different booking patterns this year versus 2019…and there is reason to be optimistic for Summer</h1>
+<p>Following on our theme of &quot;what are people booking now&quot; we are looking at booking variances across a few different dimensions for the period from boxing day to now vs 2019 (as I think you will all agree 2020 was just little bit unusual)</p>
+<p>All 3 graphs are showing variance this year vs 2019.</p>
+<h2><a class="anchor" aria-hidden="true" id="booking-variance-by-season"></a><a href="#booking-variance-by-season" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Booking Variance by Season</h2>
+<p><img src="/img/postimages/friday-data/20220107.png" alt="DataFriday"></p>
+<p>Firstly, looking at season there is a clear shift, to more Winter and Xmas (period) bookings.</p>
+<p>Explained in part by the next chart which breaks down this variance into weeks until departure (lead time).</p>
+<h2><a class="anchor" aria-hidden="true" id="variance-by-number-of-weeks-to-departure"></a><a href="#variance-by-number-of-weeks-to-departure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Variance by number of weeks to departure</h2>
+<p><img src="/img/postimages/friday-data/20220107-1.png" alt="Variance by number of weeks to departure"></p>
+<p>In this graph we can see two distinct zones (the period to the right after week 40) is quite low volume so the trends can be safely ignored.
+This is showing quite clearly a shift to shorter lead time bookings, probably driven by consumer confidence in what’s going to happen in the longer term.</p>
+<h2><a class="anchor" aria-hidden="true" id="variance-by-region"></a><a href="#variance-by-region" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Variance by Region</h2>
+<p><img src="/img/postimages/friday-data/20220107-2.png" alt="Variance by number of weeks to departure"></p>
+<p>The regional view is interesting there are some clear shifts present here too. We probably need to ask why a few more questions to understand what’s going on here. Some of it will be explainable by shifts in regional stock volumes.</p>
+<p>Other possible causes could be people less willing to travel further or it could just be related again to the season they’re booking in, i.e. people travel further generally for their summer break that the winter.</p>
+<p>These shifts to shorter lead time bookings could be seen as positive by the industry. If these shifts are driving incremental bookings i.e., bookings we might not otherwise received, then we can reasonably still expect the longer lead time bookings to come at some point.</p>
+<h3><a class="anchor" aria-hidden="true" id="here-at-sykes-that-is-what-we-are-seeing-in-terms-of-increased-occupancy-for-winter-with-the-view-that-summer-will-come-later-and-be-strong-for-demand"></a><a href="#here-at-sykes-that-is-what-we-are-seeing-in-terms-of-increased-occupancy-for-winter-with-the-view-that-summer-will-come-later-and-be-strong-for-demand" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Here at Sykes that is what we are seeing in terms of increased occupancy for Winter with the view that Summer will come later and be strong for demand.</h3>
+<p>As I have constantly said, we operate in a supply constraint market.</p>
+<p>In next weeks blog post, we will dig a little more and attempt to answer the question on incrementality.</p>
+<p>If you would like us to deep dive on any area or have questions, please post in the comments</p>
+<h2><a class="anchor" aria-hidden="true" id="about-sykes"></a><a href="#about-sykes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>About Sykes</h2>
+<p>The data and techniques shared in this article were produced by the development team at Sykes. If you are a talented Data Scientist, Analyst or Developer please check out our <a href="https://www.sykescottages.co.uk/careers/">current vacancies</a>.</p>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="#FridayData 2021-01-07" data-url="https://sykes.dev/blog/DataFriday/2022/01/07" data-related="true" data-show-count="false">Tweet</a></div><div class="blogSocialSectionItem"><div class="fb-like" data-href="https://sykes.dev/blog/DataFriday/2022/01/07" data-layout="standard" data-share="true" data-width="225" data-show-faces="false"></div></div><div class="blogSocialSectionItem"><div class="fb-comments" data-href="https://sykes.dev/blog/DataFriday/2022/01/07" data-width="100%" data-numposts="5" data-order-by="time"></div></div></div></div><div class="blog-recent"><a class="button" href="/blog/">Recent Posts</a></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/sykes-primary-logo-white-small.svg" alt="Sykes Holiday Cottages"/></a><div><h5>Community</h5><a href="https://facebook.com/sykescottages.co.uk" target="_blank">Facebook</a><a href="https://twitter.com/sykescottages" target="_blank">Twitter</a><a href="https://github.com/SykesCottages" target="_blank">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><div class="social"><a href="https://twitter.com/SykesDev" class="twitter-follow-button">Follow @SykesDev</a></div><div class="social"><div class="fb-like" data-href="https://sykes.dev" data-colorscheme="dark" data-layout="standard" data-share="true" data-width="225" data-show-faces="false"></div></div></div></section><section class="copyright">Copyright © 2022 Sykes Holiday Cottages</section></footer></div><script>window.fbAsyncInit = function() {FB.init({appId:'236941918291',xfbml:true,version:'v2.7'});};(function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) {return;}js = d.createElement(s); js.id = id;js.src = '//connect.facebook.net/en_US/sdk.js';fjs.parentNode.insertBefore(js, fjs);}(document, 'script','facebook-jssdk'));
+                </script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
